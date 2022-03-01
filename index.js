@@ -81,13 +81,13 @@ app.use('/profile', profileRouter)
 // app.all('*', (req, res) => {
 //     res.redirect("/");
 // });
-
+const port = process.env.PORT || '3000'
 async function dev() {
     try {
         await mongoose.connect(keys.MONGODB_URI, {
             useNewUrlParser: true
         })
-        app.listen(process.env.PORT, () => {
+        app.listen(port, () => {
             console.log('Server is running')
         })
         // app.listen('3000', () => {
