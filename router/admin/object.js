@@ -28,7 +28,7 @@ router.get('/delete/:id', auth, async (req, res) => {
   )
   res.redirect('/admin/object')
 })
-router.post('/', auth, async (req, res) => {
+router.post('/post', auth, async (req, res) => {
   let {
     title,
     type
