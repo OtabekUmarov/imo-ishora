@@ -1,0 +1,27 @@
+<div class="single-page">
+  <div class="page-main">
+    <div class="page-header">
+      <h3>{{title}}</h3>
+    </div>
+    <div class="page-body">
+      <form action="/admin/question" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="{{csrf}}" />
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-user" name="answer" placeholder="Nomi" required />
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <input type="file" name="img" placeholder="Rasm url" required />
+            </div>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="my-btn btn btn-primary btn-user btn-block">Kiritish</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

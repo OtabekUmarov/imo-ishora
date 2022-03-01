@@ -2,7 +2,7 @@ const {
   Router
 } = require('express')
 const router = Router()
-const Subject = require('../../modeles/subject')
+const Subject = require('../../modeles/object')
 const Question = require('../../modeles/question')
 
 

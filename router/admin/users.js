@@ -41,10 +41,9 @@ router.post('/', auth, async (req, res) => {
     }
 })
 router.get('/create', auth, async (req, res) => {
-    const users = await User.find().lean()
     res.render('admin/users/create', {
         title: 'Yangi foydalanuvchi',
-        users
+        adminUser: true,
     })
 })
 router.get('/delete/:id', auth, async (req, res) => {

@@ -1,35 +1,67 @@
-<section class="main_full inner_page">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="full">
-        <h3>{{title}}</h3>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end section -->
+<div class="empty">
+  <div class="fill" style="background: red" draggable="true"></div>
+</div>
+<div class="empty">
+  <div class="fill" style="background: green" draggable="true"> </div>
+</div>
+{{!-- <div class="empty"></div> --}}
+<div class="empty"></div>
+<div class="empty"></div>
+<script>
+  const fills = document.querySelectorAll('.fill');
+  const empties = document.querySelectorAll('.empty');
 
-<!-- about section -->
-<section class="layout_padding section about_dottat">
-  <div class="container">
-    <div class="row">
-      {{#each subject}}
-      <div class="col-lg-4 col-md-6">
-        <div class="subject">
-          <div class="subject-img">
-            <img src="{{img}}" alt="">
-          </div>
-          <div class="subject-title">
-            {{name}}
-          </div>
-          <div class="subject-stitle">
-            Boshqotirmalar soni: {{count}}
-          </div>
-          <a href="/subject/{{_id}}" class="subject-link">Boshqotirma yechish</a>
-        </div>
-      </div>
-      {{/each}}
-    </div>
+  let shuffleElement;
+  let shuffleParentElement;
 
-  </div>
-</section>
+  // Fill listeners
+  for (const fill of fills) {
+    fill.addEventListener('dragstart', dragStart);
+    fill.addEventListener('dragend', dragEnd);
+  }
+  // Loop through empty boxes and add listeners
+  for (const empty of empties) {
+    empty.addEventListener('dragover', dragOver);
+    empty.addEventListener('dragenter', dragEnter);
+    empty.addEventListener('dragleave', dragLeave);
+    empty.addEventListener('drop', dragDrop);
+  }
+
+  // Drag Functions
+  function dragStart(e) {
+    this.className += ' hold';
+    setTimeout(() => (this.className = 'invisible'), 0);
+    shuffleElement = e.currentTarget;
+    shuffleParentElement = e.currentTarget.parentElement;
+  }
+
+  function dragEnd() {
+    this.className = 'fill';
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+  }
+
+  function dragEnter(e) {
+    e.preventDefault();
+    this.className += ' hovered';
+  }
+
+  function dragLeave() {
+    this.className = 'empty';
+  }
+
+  function dragDrop() {
+    this.className = 'empty';
+    const shuffleWithElement = this.querySelector('.fill');
+
+    this.innerHTML = '';
+    this.append(shuffleElement);
+
+    if (shuffleWithElement) {
+      shuffleParentElement.innerHTML = '';
+      shuffleParentElement.append(shuffleWithElement);
+    }
+  }
+</script>

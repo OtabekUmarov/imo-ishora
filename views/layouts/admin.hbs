@@ -1,28 +1,13 @@
 {{> head }}
 
-<body id="page-top">
-    <div id="wrapper">
+<body>
+    <div class="wrapper">
         {{> adminnav}}
-        <div id="content-wrapper" class="d-flex flex-column">
-            <div id="content">
-                {{> admintop}}
-                <div class="container-fluid">
-                    <div class="mb-4 d-flex justify-content-between">
-                        <h1 class="h3  text-gray-800">{{title}}</h1>
-                        {{#if add}}
-                        <a href="{{add}}" class="btn btn-primary">Qo'shish</a>
-                        {{/if}}
-                    </div>
-                    {{{body}}}
-                </div>
-            </div>
-            {{> footer}}
-        </div>
+        <main class="main">
+            {{> admintop}}
+            {{{body}}}
+        </main>
     </div>
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
     {{> scripts}}
 </body>
 

@@ -2,7 +2,7 @@
 
 
 
-<body id="{{inner}}">
+<body id="inner_page">
 
   {{> sitenav}}
   {{{body}}}
@@ -15,6 +15,7 @@
   {{#if error}}
   <div class="toast error">
     <div class="card bg-danger text-white">
+      <button class="exit" onclick="exitToast(0)"></button>
       <div class="card-body">{{error}}</div>
     </div>
   </div>
@@ -22,6 +23,7 @@
   {{#if success}}
   <div class="toast ">
     <div class="card bg-success text-white">
+      <button class="exit" onclick="exitToast(0)"></button>
       <div class="card-body">{{success}}</div>
     </div>
   </div>
@@ -30,20 +32,23 @@
   {{> sitescripts}}
 
   <script>
-    let toast = document.querySelectorAll(".toast")
-    let index = 0
-    toast.forEach((el) => {
-      if (index == 0) {
-        setTimeout(() => {
-          el.classList.add('hide')
-        }, 3000);
-      } else {
-        setTimeout(() => {
-          el.classList.add('hide')
-        }, 3500);
-      }
-      index++
-    })
+    function exitToast(time) {
+      let toast = document.querySelectorAll(".toast")
+      let index = 0
+      toast.forEach((el) => {
+        if (index == 0) {
+          setTimeout(() => {
+            el.classList.add('hide')
+          }, time);
+        } else {
+          setTimeout(() => {
+            el.classList.add('hide')
+          }, time + 500);
+        }
+        index++
+      })
+    }
+    exitToast(3000)
   </script>
 </body>
 

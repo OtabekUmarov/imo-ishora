@@ -1,0 +1,40 @@
+<div class="single-page">
+  <div class="page-main">
+    <div class="page-header">
+      <h3>{{title}}</h3>
+    </div>
+    <div class="page-body">
+      <form action="/admin/object" method="post" class="user" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="{{csrf}}" />
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>
+                Ishora
+                <input type="text" class="form-control form-control-user" name="title" placeholder="Ishora" required />
+              </label>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <label>
+              Turi
+            </label>
+            <select name="type" class="form-control">
+              <option value="harf" selected="">Harf</option>
+              <option value=" raqam">Raqam</option>
+            </select>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>Rasm</label>
+              <input type="file" name="img" placeholder="Rasm url" />
+            </div>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="add-btn">Kiritish</button>
+          </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,8 @@ const {
     reset
 } = require('nodemon')
 const keys = require('../../keys/pro')
+
+
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
@@ -61,12 +63,12 @@ router.post('/reg', async (req, res) => {
             password: hashPass
         })
         await really.save()
-        await transporter.sendMail({
-            from: keys.SYSTEM_EMAIL,
-            to: email,
-            subject: 'Ro`yhatdan o`tildi',
-            html: `<h1>Hurmatli ${name}, siz tizimda ro'yhatdan o'tdingiz!</h1>`
-        });
+        // await transporter.sendMail({
+        //     from: keys.SYSTEM_EMAIL,
+        //     to: email,
+        //     subject: 'Ro`yhatdan o`tildi',
+        //     html: `<h1>Hurmatli ${name}, siz tizimda ro'yhatdan o'tdingiz!</h1>`
+        // });
 
         req.flash('success', 'Ro`yhatdan muvaffaqiyatli o`tildi!')
         res.redirect('/admin/auth/login')

@@ -1,0 +1,181 @@
+<div class="container">
+
+  <h2 class="title my-4">
+    Matnli boshqotirmalar
+  </h2>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="d-flex justify-content-md-end justify-content-md-start justify-content-sm-center">
+        <div class="img-item">
+          <img src="/img/hand/M.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/A.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/T.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/N.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/L.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/I.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="d-flex  justify-content-md-start justify-content-sm-center mt-xs-3">
+        <div class="img-item">
+          <img src="/img/hand/B.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/O.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/Sh.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/Q.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/O.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/T.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/I.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/R.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/M.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/A.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/L.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/A.png" alt="">
+        </div>
+        <div class="img-item">
+          <img src="/img/hand/R.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3 class="title text-left pt-4">
+    {{test.answer}}
+  </h3>
+  <div class="row pt-5 pb-5">
+    <div class="col-lg-8 border-right">
+      <div class="row">
+        <div class="col-12 row">
+          {{#each size}}
+          <div class="empty" id="answer"></div>
+          {{/each}}
+          <br>
+        </div>
+        <div class="col-12">
+          <form action="/test/answer/{{test._id}}" method="post">
+            <input type="hidden" name="_csrf" value="{{csrf}}" />
+            <input type="hidden" name="answer" id="answerInput" value="" />
+            <div class="row">
+              <div class="col-4">
+                <button type="submit" class="my-btn btn btn-primary btn-user btn-block">Kiritish</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-2">
+      <div class="row">
+        {{#each object}}
+        <div class="col-lg-6">
+          <div class="empty">
+            <div class="fill" draggable="true">
+              <img src="{{img}}" alt="{{title}}">
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const fills = document.querySelectorAll('.fill');
+  const empties = document.querySelectorAll('.empty');
+
+  let shuffleElement;
+  let shuffleParentElement;
+
+  // Fill listeners
+  for (const fill of fills) {
+    fill.addEventListener('dragstart', dragStart);
+    fill.addEventListener('dragend', dragEnd);
+  }
+  // Loop through empty boxes and add listeners
+  for (const empty of empties) {
+    empty.addEventListener('dragover', dragOver);
+    empty.addEventListener('dragenter', dragEnter);
+    empty.addEventListener('dragleave', dragLeave);
+    empty.addEventListener('drop', dragDrop);
+  }
+
+  // Drag Functions
+  function dragStart(e) {
+    this.className += ' hold';
+    setTimeout(() => (this.className = 'invisible'), 0);
+    shuffleElement = e.currentTarget;
+    shuffleParentElement = e.currentTarget.parentElement;
+  }
+
+  function dragEnd() {
+    let items = document.querySelectorAll('#answer img');
+    let arr = [];
+    items.forEach((el) => {
+      let val = el.getAttribute("alt")
+      arr.push(val);
+    })
+    arr = arr.join('');
+    let answerInput = document.getElementById('answerInput')
+    answerInput.value = arr
+    this.className = 'fill';
+  }
+
+  function dragOver(e) {
+    e.preventDefault();
+  }
+
+  function dragEnter(e) {
+    e.preventDefault();
+    this.className += ' hovered';
+  }
+
+  function dragLeave() {
+    this.className = 'empty';
+  }
+
+  function dragDrop() {
+    this.className = 'empty';
+    const shuffleWithElement = this.querySelector('.fill');
+
+    this.innerHTML = '';
+    this.append(shuffleElement);
+
+    if (shuffleWithElement) {
+      shuffleParentElement.innerHTML = '';
+      shuffleParentElement.append(shuffleWithElement);
+    }
+  }
+</script>

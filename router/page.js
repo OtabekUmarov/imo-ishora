@@ -2,10 +2,9 @@ const {
     Router
 } = require('express')
 const router = Router()
-const auth = require('../middleware/auth')
-const Book = require('../modeles/book')
-const Subject = require('../modeles/subject')
+const Object = require('../modeles/object')
 const Question = require('../modeles/question')
+const Test = require('../modeles/test')
 
 
 
@@ -30,22 +29,70 @@ router.get('/about', (req, res) => {
         isHome: true
     })
 })
-
-router.get('/subjects', async (req, res) => {
-    let subject = await Subject.find().lean()
-    subject.forEach(async (el) => {
-        let count = await Question.findOne({
-            subjectId: el._id
-        }).count()
-        el.count = count
-    });
-    res.render('subject', {
-        title: 'Fanlar',
+router.get('/search', (req, res) => {
+    res.render('search', {
+        title: 'Biz haqimizda',
         layout: "site",
-        subject,
         inner: "inner_page",
         isHome: true
     })
+})
+router.get('/test', async (req, res) => {
+    let count = await Test.count()
+    let random = Math.floor(Math.random() * count)
+    let object = await Object.find().lean()
+    let test = await Test.findOne().skip(random).lean()
+    // test.answer = test.answer.split(" ").join('')
+
+    let len = test.answer.split("")
+    let countWord = 0
+    for (let index = 0; index < len.length; index++) {
+        for (let i = 0; i < index; i++) {
+            if (len[index] == len[i]) {
+                countWord++
+                if (countWord == 2) {
+                    continue
+                }
+                title = len[i].toLowerCase()
+                let obj = await Object.findOne({
+                    title
+                }).lean()
+                if (obj) {
+                    object.push(obj)
+                }
+            }
+        }
+    }
+    let size = test && test.answer && test.answer.split(' ').join("").split('')
+    object = object.sort(() => (Math.random() > .5) ? 1 : -1)
+    res.render('test', {
+        title: 'So`zni topish',
+        layout: "site",
+        test,
+        size,
+        object,
+        success: req.flash('success'),
+        error: req.flash('error'),
+        inner: "inner_page",
+        isHome: true
+    })
+})
+router.post('/test/answer/:id', async (req, res) => {
+    let _id = req.params.id
+    let {
+        answer
+    } = req.body
+    let answerChech = await Test.findById(_id).lean()
+    if (answer.toLowerCase() == answerChech.answer.toLowerCase()) {
+        req.flash("id", '')
+        req.flash("success", "Togri javob")
+
+    } else {
+        req.flash("id", _id)
+        req.flash("error", "Notogri javob")
+    }
+    // console.log(a);
+    res.redirect('/test')
 })
 router.get('/subject/:id', async (req, res) => {
     const id = req.params.id
@@ -84,8 +131,61 @@ router.post('/answer/:id', async (req, res) => {
 })
 
 
+router.get('/question', async (req, res) => {
+    let count = await Question.count()
+    let random = Math.floor(Math.random() * count)
+    let object = await Object.find().lean()
+    let question = await Question.findOne().skip(random).lean()
+    let len = question.answer.split("")
+    let countWord = 0
+    for (let index = 0; index < len.length; index++) {
+        for (let i = 0; i < index; i++) {
+            if (len[index] == len[i]) {
+                countWord++
+                if (countWord == 2) {
+                    continue
+                }
+                title = len[i].toLowerCase()
+                let obj = await Object.findOne({
+                    title
+                }).lean()
+                if (obj) {
+                    object.push(obj)
+                }
+            }
+        }
+    }
+    let size = question && question.answer && question.answer.split(' ').join("").split('')
+    object = object.sort(() => (Math.random() > .5) ? 1 : -1)
+    res.render('question', {
+        title: 'Rasmli savollar',
+        layout: "site",
+        question,
+        size,
+        object,
+        success: req.flash('success'),
+        error: req.flash('error'),
+        inner: "inner_page",
+        isHome: true
+    })
+})
+router.post('/question/answer/:id', async (req, res) => {
+    let _id = req.params.id
+    let {
+        answer
+    } = req.body
+    let answerChech = await Question.findById(_id).lean()
+    if (answer.toLowerCase() == answerChech.answer.toLowerCase()) {
+        req.flash("id", '')
+        req.flash("success", "To'gri javob")
 
-
+    } else {
+        req.flash("id", _id)
+        req.flash("error", "Noto'gri javob")
+    }
+    // console.log(a);
+    res.redirect('/question')
+})
 
 
 // router.post('/search', auth, async (req, res) => {

@@ -1,107 +1,99 @@
-<ul
-  class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-  id="accordionSidebar"
->
-  <a
-    class="sidebar-brand d-flex align-items-center justify-content-center"
-    href="/admin"
-  >
-    <div class="sidebar-brand-icon">
-      <i class="fas fa-user"></i>
+<div class="sidebar">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-logo">
+      <router-link to="/admin/employee">
+        {{!-- <img src="~/assets/images/logo.png" alt="logo" /> --}}
+        <span>Admin</span>
+      </router-link>
     </div>
-    <div class="sidebar-brand-text mx-3">Admin</div>
-  </a>
-  <hr class="sidebar-divider my-0" />
-  {{#if adminHome}}
-    <li class="nav-item active">
-      <a class="nav-link" href="/admin">
-        <i class="fas fa-home"></i>
-        <span>Bosh sahifa</span></a>
-    </li>
-  {{else}}
-    <li class="nav-item">
-      <a class="nav-link" href="/admin">
-        <i class="fas fa-home"></i>
-        <span>Bosh sahifa</span></a>
-    </li>
-  {{/if}}
-  {{#if adminUser}}
-    <li class="nav-item active">
-      <a class="nav-link" href="/admin/users">
-        <i class="fas fa-user"></i>
-        <span>Foydalanuvchilar</span></a>
-    </li>
-  {{else}}
-    <li class="nav-item">
-      <a class="nav-link" href="/admin/users">
-        <i class="fas fa-user"></i>
-        <span>Foydalanuvchilar</span></a>
-    </li>
-  {{/if}}
-  {{#if adminSubject}}
-    <li class="nav-item active">
-      <a class="nav-link" href="/admin/subject">
-        <i class="fas fa-home"></i>
-        <span>Fanlar</span></a>
-    </li>
-  {{else}}
-    <li class="nav-item">
-      <a class="nav-link" href="/admin/subject">
-        <i class="fas fa-home"></i>
-        <span>Fanlar</span></a>
-    </li>
-  {{/if}}
-  {{#if adminPuzzle}}
-    <li class="nav-item active">
-      <a class="nav-link" href="/admin/puzzle">
-        <i class="fas fa-home"></i>
-        <span>Boshqotirmalar</span></a>
-    </li>
-  {{else}}
-    <li class="nav-item">
-      <a class="nav-link" href="/admin/puzzle">
-        <i class="fas fa-home"></i>
-        <span>Boshqotirmalar</span></a>
-    </li>
-  {{/if}}
-  <hr class="sidebar-divider" />
-  <div class="sidebar-heading">
-    Kitoblar
-  </div>
 
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-    <a
-      class="nav-link collapsed"
-      href="#"
-      data-toggle="collapse"
-      data-target="#collapseTwo"
-      aria-expanded="true"
-      aria-controls="collapseTwo"
-    >
-      <i class="fas fa-fw fa-book"></i>
-      <span>Kitoblar</span>
-    </a>
-    <div
-      id="collapseTwo"
-      class="collapse"
-      aria-labelledby="headingTwo"
-      data-parent="#accordionSidebar"
-    >
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/book/">Barcha kitoblar</a>
-        <a class="collapse-item" href="/book/new">Yangi kitob</a>
-        <a class="collapse-item" href="/genre">Janrlar</a>
+    <div class="sidebar-body">
+      <div class="sidebar-menu">
+        <ul>
+          {{#if adminHome}}
+          <li>
+            <a class="active" href="/admin">
+              <i class="fas fa-home"></i>
+              <span>Bosh sahifa</span></a>
+          </li>
+          {{else}}
+          <li>
+            <a href="/admin">
+              <i class="fas fa-home"></i>
+              <span>Bosh sahifa</span></a>
+          </li>
+          {{/if}}
+          {{#if adminUser}}
+          <li>
+            <a class="active" href="/admin/users">
+              <i class="fas fa-user"></i>
+              <span>Foydalanuvchilar</span></a>
+          </li>
+          {{else}}
+          <li>
+            <a href="/admin/users">
+              <i class="fas fa-user"></i>
+              <span>Foydalanuvchilar</span></a>
+          </li>
+          {{/if}}
+          {{#if adminSubject}}
+          <li>
+            <a class="active" href="/admin/object">
+              <i class="fas fa-hands"></i>
+              <span>Imo-ishoralar</span></a>
+          </li>
+          {{else}}
+          <li>
+            <a href="/admin/object">
+              <i class="fas fa-hands"></i>
+              <span>Imo-ishoralar</span></a>
+          </li>
+          {{/if}}
+          {{#if adminPuzzle}}
+          <li>
+            <a class="active" href="/admin/test">
+              <i class="fas fa-question"></i>
+              <span>Savollar</span></a>
+          </li>
+          {{else}}
+          <li>
+            <a href="/admin/test">
+              <i class="fas fa-question"></i>
+              <span>Savollar</span></a>
+          </li>
+          {{/if}}
+          {{#if adminQuestion}}
+          <li>
+            <a class="active" href="/admin/question">
+              <i class="fas fa-question"></i>
+              <span>Rasmli savollar</span></a>
+          </li>
+          {{else}}
+          <li>
+            <a href="/admin/question">
+              <i class="fas fa-question"></i>
+              <span>Rasmli savollar</span></a>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+      <div class="sidebar-logout">
+        <a href="/">
+          <i class="fas fa-site"></i>
+          <span>Saytga qaytish</span></a>
+      </div>
+      <div class="sidebar-logout">
+        <a href="/admin/auth/logout">
+          <i class="fas fa-sign-out-alt fa-sm fa-fw"></i>
+          <span>Tizimdan chiqish</span>
+        </a>
       </div>
     </div>
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block" />
-
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    {{!-- <div class="sidebar-footer">
+      <span>Developed by: <a href="#">Online Service Group</a></span>
+    </div> --}}
   </div>
-
-</ul>
+  <div class="sidebar-close" style="display: none">
+    <i class="fa-regular fa-circle-xmark"></i>
+  </div>
+</div>

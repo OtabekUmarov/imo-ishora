@@ -1,0 +1,56 @@
+<div class="single-page">
+  <div class="page-main">
+    <div class="page-header">
+      <h3>{{title}}</h3>
+    </div>
+    <div class="page-body">
+      <div class="page-body-wrapper">
+        <form action="/admin/test" method="post" class="user" enctype="multipart/form-data">
+          <input type="hidden" name="_csrf" value="{{csrf}}" />
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <input type="text" class="form-control form-control-user" name="answer" placeholder="Ishora" />
+              </div>
+            </div>
+            <div class="col-4">
+              <button type="submit" class="add-btn">Kiritish</button>
+            </div>
+          </div>
+        </form>
+        <div class="my-table">
+          <table>
+            <thead>
+              <tr>
+                <th>№</th>
+                <th>So'zlar</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each test}}
+              <tr>
+                <td>{{@index}}</td>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex flex-column justify-content-center">
+                      <h6 class="mb-0 text-sm">{{answer}}</h6>
+                    </div>
+                  </div>
+                </td>
+
+                <td class="align-middle">
+                  <a href="/admin/test/delete/{{_id}}" class="btn btn-primary font-weight-bold" data-toggle="tooltip"
+                    data-original-title="O'chirish">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

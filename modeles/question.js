@@ -8,15 +8,7 @@ const puzzle = new Schema({
     type: String,
     required: true
   },
-  subjectId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Subject'
-  },
-  type: {
-    type: Number,
-    default: 0
-  },
-  question: String,
+  img: String,
 })
 
 

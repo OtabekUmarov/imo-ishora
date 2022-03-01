@@ -11,8 +11,9 @@ const compression = require('compression')
 const adminpageRouter = require('./router/admin/adminpage')
 const authRouter = require('./router/admin/auth')
 const usersRouter = require('./router/admin/users')
-const puzzleRouter = require('./router/admin/puzzle')
-const subjectRouter = require('./router/admin/subject')
+const testRouter = require('./router/admin/test')
+const objectRouter = require('./router/admin/object')
+const questionRouter = require('./router/admin/question')
 
 
 const pageRouter = require('./router/page')
@@ -66,8 +67,9 @@ app.use(compression())
 app.use(pageRouter)
 app.use('/admin', adminpageRouter)
 app.use('/admin/users', usersRouter)
-app.use('/admin/puzzle', puzzleRouter)
-app.use('/admin/subject', subjectRouter)
+app.use('/admin/test', testRouter)
+app.use('/admin/object', objectRouter)
+app.use('/admin/question', questionRouter)
 
 
 // app.use('/users', usersRouter)
@@ -77,7 +79,7 @@ app.use('/genre', genreRouter)
 app.use('/profile', profileRouter)
 
 // app.all('*', (req, res) => {
-//     res.redirect("/admin/auth/login");
+//     res.redirect("/");
 // });
 
 async function dev() {

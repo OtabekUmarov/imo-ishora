@@ -1,0 +1,64 @@
+<div class="single-page">
+  {{!--
+  <Breadcrumbs :breadcrumbList="breadcrumbList" /> --}}
+  <div class="page-main">
+    <div class="page-header">
+      <h3>Employees</h3>
+      {{!-- <a-button type="primary" class="my-btn" @click="
+            $router.push({
+              path: '/admin/employee/create',
+            })
+          "><i class="fa-solid fa-plus" style="margin-right: 8px"></i><span>Add user</span> --}}
+        {{!-- </a-button> --}}
+    </div>
+    <div class="page-body">
+      <div class="page-body-wrapper">
+        <div class="my-table">
+          <table>
+            <thead>
+              <tr>
+                <th>№</th>
+                <th>Фото</th>
+                <th>ФИО</th>
+                <th>Должность</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <nuxt-link tag="tr" :to="`/admin/employee/${item.id}`" v-for="(item, index) in data"
+                :key="item.id + index">
+                <td width="1%">{{ item.id }}</td>
+                <td width="1%">
+                  <div class="my-table-avatar">
+                    <img :src="item.image" alt="avatar" />
+                  </div>
+                </td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.job }}</td>
+                <td width="1%">
+                  {{!-- <a-dropdown-button class="my-table-actions">
+                    <a-menu slot="overlay">
+                      <a-menu-item key="1">
+                        <i class="fa-solid fa-trash"></i> Delete
+                      </a-menu-item>
+                      <a-menu-item key="2" @click="
+                            $router.push({
+                              path: '/admin/employee/update/1',
+                            })
+                          ">
+                        <i class="fa-solid fa-pen"></i>
+                        Edit
+                      </a-menu-item>
+                    </a-menu>
+                  </a-dropdown-button> --}}
+                </td>
+              </nuxt-link>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!--
+  <Pagination /> --}}
+</div>

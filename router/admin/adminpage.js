@@ -11,6 +11,14 @@ router.get('/', auth, (req, res) => {
     adminHome: true
   })
 })
+router.get('/employe', auth, (req, res) => {
+  res.render('admin/employe', {
+    title: 'Bosh sahifa',
+    adminHome: true
+  })
+})
+
+
 
 
 
