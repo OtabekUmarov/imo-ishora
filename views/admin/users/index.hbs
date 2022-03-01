@@ -22,25 +22,32 @@
             </thead>
             <tbody>
               {{#each users}}
-              <tr>
-                <td width="1%">{{@index}}</td>
-                <td width="1%">
-                  <div class="my-table-avatar">
-                    <img src="/{{img}}" alt="avatar" />
-                  </div>
-                </td>
-                <td>{{ name }}</td>
-                <td>{{ lname }}</td>
-                <td>{{ email }}</td>
-                <td width="150px  ">
-                  <a href="/admin/users/edit/{{_id}}" class="btn btn-primary">
-                    <i class="fas fa-eye"></i>
-                  </a>
-                  <a href="/admin/users/delete/{{_id}}" class="btn btn-danger">
-                    <i class="fas fa-trash"></i>
-                  </a>
-                </td>
-              </tr>
+                <tr>
+                  <td width="1%">{{@index}}</td>
+                  <td width="1%">
+                    <div class="my-table-avatar">
+                      {{#if img}}
+                        <img src="/{{img}}" alt="avatar" />
+                      {{else}}
+                        <img src="/img/default.png" alt="avatar" />
+                      {{/if}}
+                    </div>
+                  </td>
+                  <td>{{name}}</td>
+                  <td>{{lname}}</td>
+                  <td>{{email}}</td>
+                  <td width="150px  ">
+                    <a href="/admin/users/edit/{{_id}}" class="btn btn-primary">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                    <a
+                      href="/admin/users/delete/{{_id}}"
+                      class="btn btn-danger"
+                    >
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </td>
+                </tr>
               {{/each}}
             </tbody>
           </table>
