@@ -4673,7 +4673,25 @@ form#commant_form div.field textarea.custom_field {
 
 
 
-
+@media (max-width:992px) {
+    .logo {
+        float: unset;
+        margin: auto;
+        margin-top: 15px;
+    }
+    button.navbar-toggler span:nth-child(1) {
+        display: block;
+    }
+    button.navbar-toggler {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .main_menu button.navbar-toggler {
+        justify-content: space-between;
+        align-items: center;
+    }
+}
 
 @media (max-width:776px) {
     .big-img.middle {
