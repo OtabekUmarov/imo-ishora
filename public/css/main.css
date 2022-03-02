@@ -73,6 +73,7 @@ a {
     text-decoration: none;
 }
 .wrapper {
+    height: 100vh;
     display: flex;
     padding: 16px;
     background-color: var(--bg-color);
@@ -101,7 +102,8 @@ a {
 .sidebar {
     max-width: 312px;
     flex: 0 0 312px;
-    height: calc(100vh - 48px);
+    height: calc(100vh - 36px) !important;
+    min-height: calc(100vh - 36px) !important;
     background-color: var(--blue-color);
     border-radius: 12px;
     padding: 32px 0;
