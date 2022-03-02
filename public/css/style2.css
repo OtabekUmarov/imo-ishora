@@ -4654,6 +4654,9 @@ form#commant_form div.field textarea.custom_field {
 .vertical-img {
     height: 55px;
 }
+.fd-c.w-100{
+    width: 100px;
+}
 .vertical-img img {
     height: 100%;
     width: 100%;
@@ -4661,8 +4664,12 @@ form#commant_form div.field textarea.custom_field {
 .fd-c .mtitle {
     font-size: 24px;
     font-weight: bold;
+    color: rgb(2, 2, 61);
 }
-
+.row.color-blue .col-md-2 {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
 
 
 
