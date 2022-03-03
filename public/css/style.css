@@ -292,3 +292,12 @@ form.user .form-control-user {
      display: none;
  }
  
+
+ .question-img {
+    height: 450px;
+ }
+ .question-img img {
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+ }
