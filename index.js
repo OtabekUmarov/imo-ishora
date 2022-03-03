@@ -77,10 +77,11 @@ app.use('/admin/auth', authRouter)
 app.use('/book', bookRouter)
 app.use('/genre', genreRouter)
 app.use('/profile', profileRouter)
-
-// app.all('*', (req, res) => {
-//     res.redirect("/");
-// });
+app.all('*', (req, res) => {
+    res.status(404).render('404', {
+        layout: "404"
+    });
+});
 const port = process.env.PORT || '3000'
 async function dev() {
     try {
