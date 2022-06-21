@@ -5,8 +5,6 @@ const session = require('express-session')
 const csrf = require('csurf')
 const MongoStore = require('connect-mongodb-session')(session)
 const flash = require('connect-flash') // !
-const helmet = require('helmet')
-const compression = require('compression')
 // Routerlar
 const adminpageRouter = require('./router/admin/adminpage')
 const authRouter = require('./router/admin/auth')
@@ -52,7 +50,7 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: 60 * 60 * 24000
+        maxAge: 60 * 60 * 1200
     },
     store
 }))
@@ -61,8 +59,6 @@ app.use(fileMiddleware.single('img'))
 app.use(csrf())
 app.use(flash()) // !
 app.use(varMid)
-app.use(helmet())
-app.use(compression())
 
 app.use(pageRouter)
 app.use('/admin', adminpageRouter)
@@ -82,7 +78,7 @@ app.all('*', (req, res) => {
         layout: "404"
     });
 });
-const port = process.env.PORT || '3000'
+const port = process.env.PORT || '3009'
 async function dev() {
     try {
         await mongoose.connect(keys.MONGODB_URI, {
@@ -91,9 +87,6 @@ async function dev() {
         app.listen(port, () => {
             console.log('Server is running')
         })
-        // app.listen('3000', () => {
-        //     console.log('Server is running')
-        // })
     } catch (error) {
         console.log(error)
     }
