@@ -771,11 +771,20 @@ form#commant_form div.field textarea.custom_field {
 }
 
 body#inner_page header.header {
-    background-image: url('/img/slider_img.png');
+    background-image: url('/img/letter.jpg');
     background-size: 100% auto;
     position: relative;
 }
-
+body#inner_page header.header::after {
+    content: '';
+    position: absolute; 
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: -1;
+}
 .blue_pattern_bg {
     background-image: url('images/blue_bg.png');
     background-attachment: fixed;
@@ -4691,6 +4700,15 @@ form#commant_form div.field textarea.custom_field {
         justify-content: space-between;
         align-items: center;
     }
+    #content {
+        margin: 0 !important;
+    }
+    .navbar {
+        padding: 0 !important;
+    }
+    .navbar-nav {
+        background-color: #111111 !important;
+    }
 }
 
 @media (max-width:776px) {
@@ -4709,5 +4727,12 @@ form#commant_form div.field textarea.custom_field {
     .flex-direction-sm-column {
         flex-direction: column;
         /* align-items: start !important; */
+    }
+    .logo {
+        margin: auto !important;
+        text-align: center;
+    }
+    .logo-inner {
+        width: 100% !important;
     }
 }

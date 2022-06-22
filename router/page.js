@@ -37,6 +37,14 @@ router.get('/search', (req, res) => {
         isHome: true
     })
 })
+router.get('/number', (req, res) => {
+    res.render('number', {
+        title: 'Sonlarni tartiblash',
+        layout: "site",
+        inner: "inner_page",
+        isNumber: true
+    })
+})
 router.get('/test', async (req, res) => {
     let count = await Test.count()
     let random = Math.floor(Math.random() * count)
