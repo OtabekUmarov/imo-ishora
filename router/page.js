@@ -42,8 +42,6 @@ router.get('/test', async (req, res) => {
     let random = Math.floor(Math.random() * count)
     let object = await Object.find().lean()
     let test = await Test.findOne().skip(random).lean()
-    // test.answer = test.answer.split(" ").join('')
-
     let len = test.answer.split("")
     let countWord = 0
     for (let index = 0; index < len.length; index++) {
@@ -86,15 +84,15 @@ router.post('/test/answer/:id', async (req, res) => {
     let answerChech = await Test.findById(_id).lean()
     if (answer.toLowerCase() == answerChech.answer.toLowerCase()) {
         req.flash("id", '')
-        req.flash("success", "Togri javob")
-
+        req.flash("success", "Tog'ri javob")
     } else {
         req.flash("id", _id)
-        req.flash("error", "Notogri javob")
+        req.flash("error", "Noto'g'ri javob")
     }
-    // console.log(a);
     res.redirect('/test')
 })
+
+
 router.get('/subject/:id', async (req, res) => {
     const id = req.params.id
     let count = await Question.count()

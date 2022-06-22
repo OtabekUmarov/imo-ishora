@@ -16,8 +16,6 @@ const questionRouter = require('./router/admin/question')
 
 const pageRouter = require('./router/page')
 // const usersRouter = require('./router/users')
-const bookRouter = require('./router/book')
-const genreRouter = require('./router/genre')
 const profileRouter = require('./router/profile')
 
 // middleWare lar
@@ -70,8 +68,6 @@ app.use('/admin/question', questionRouter)
 
 // app.use('/users', usersRouter)
 app.use('/admin/auth', authRouter)
-app.use('/book', bookRouter)
-app.use('/genre', genreRouter)
 app.use('/profile', profileRouter)
 app.all('*', (req, res) => {
     res.status(404).render('404', {

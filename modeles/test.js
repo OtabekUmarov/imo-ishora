@@ -8,7 +8,6 @@ const test = new Schema({
     type: String,
     required: true
   },
-
 })
 
 
